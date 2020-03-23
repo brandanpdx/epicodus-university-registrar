@@ -33,7 +33,7 @@ namespace Registrar.Controllers
       _db.Students.Add(student);
       if (CourseId != 0)
       {
-        _db.RegistrarContext.Add(new RegistrarContext() { CategoryId = CategoryId, ItemId = item.ItemId });
+        _db.RegistrarContext.Add(new RegistrarContext() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -41,22 +41,22 @@ namespace Registrar.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisItem = _db.Students
-          .Include(item => item.Categories)
-          .ThenInclude(join => join.Category)
-          .FirstOrDefault(item => item.ItemId == id);
-      return View(thisItem);
+      var thisStudent = _db.Students
+          .Include(student => student.Courses)
+          .ThenInclude(join => join.Course)
+          .FirstOrDefault(student => student.StudentId == id);
+      return View(thisStudent);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisItem = _db.Students.FirstOrDefault(Students => Students.ItemId == id);
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-      return View(thisItem);
+      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
+      ViewBag.CategoryId = new SelectList(_db.Courses, "CourseId", "Name");
+      return View(thisStudent);
     }
 
     [HttpPost]
-    public ActionResult Edit(Item item, int CategoryId)
+    public ActionResult Edit(Item item, int CourseId)
     {
       if (CategoryId != 0)
       {
