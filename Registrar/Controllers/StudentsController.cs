@@ -75,7 +75,7 @@ namespace Registrar.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddCategory(Student student, int CourseId)
+    public ActionResult AddCourse(Student student, int CourseId)
     {
       if (CourseId != 0)
       {
@@ -108,5 +108,13 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    // [HttpPost("/vendors/{vendorId}/orders/delete")]
+    // public ActionResult DeleteAll(int vendorId)
+    // {
+    //   Vendor vendor = Vendor.Find(vendorId);
+    //   vendor.Orders.Clear();
+    //   Order.ClearAll();
+    //   return View();
+    // }
   }
 }
