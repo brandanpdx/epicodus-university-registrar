@@ -66,8 +66,8 @@ namespace Registrar.Controllers
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
-      _db.Categories.Remove(thisCategory);
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      _db.Categories.Remove(thisCourse);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
