@@ -56,30 +56,30 @@ namespace Registrar.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Item item, int CourseId)
+    public ActionResult Edit(Student student, int CourseId)
     {
-      if (CategoryId != 0)
+      if (CourseId != 0)
       {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
-      _db.Entry(item).State = EntityState.Modified;
+      _db.Entry(student).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult AddCategory(int id)
     {
-      var thisItem = _db.Students.FirstOrDefault(Students => Students.ItemId == id);
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-      return View(thisItem);
+      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      return View(thisStudent);
     }
 
     [HttpPost]
-    public ActionResult AddCategory(Item item, int CategoryId)
+    public ActionResult AddCategory(Student student, int CourseId)
     {
-      if (CategoryId != 0)
+      if (Course != 0)
       {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -87,15 +87,15 @@ namespace Registrar.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisItem = _db.Students.FirstOrDefault(Students => Students.ItemId == id);
-      return View(thisItem);
+      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentthisStudentId == id);
+      return View(thisStudent);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisItem = _db.Students.FirstOrDefault(Students => Students.ItemId == id);
-      _db.Students.Remove(thisItem);
+      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
+      _db.Students.Remove(thisStudent);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -103,7 +103,7 @@ namespace Registrar.Controllers
     [HttpPost]
     public ActionResult DeleteCategory(int joinId)
     {
-      var joinEntry = _db.CategoryItem.FirstOrDefault(entry => entry.CategoryItemId == joinId);
+      var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
       _db.CategoryItem.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
