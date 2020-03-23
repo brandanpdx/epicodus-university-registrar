@@ -37,7 +37,7 @@ namespace Registrar.Controllers
     public ActionResult Details(int id)
     {
       var thisCourse = _db.Courses
-          .Include(course => Course.Students)
+          .Include(course => course.Students)
           .ThenInclude(join => join.Student)
           .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
@@ -67,7 +67,7 @@ namespace Registrar.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      _db.Categories.Remove(thisCourse);
+      _db.Courses.Remove(thisCourse);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

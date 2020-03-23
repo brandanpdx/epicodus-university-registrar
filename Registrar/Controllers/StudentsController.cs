@@ -33,7 +33,7 @@ namespace Registrar.Controllers
       _db.Students.Add(student);
       if (CourseId != 0)
       {
-        _db.RegistrarContext.Add(new RegistrarContext() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -77,7 +77,7 @@ namespace Registrar.Controllers
     [HttpPost]
     public ActionResult AddCategory(Student student, int CourseId)
     {
-      if (Course != 0)
+      if (CourseId != 0)
       {
         _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
@@ -87,7 +87,7 @@ namespace Registrar.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentthisStudentId == id);
+      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
       return View(thisStudent);
     }
 
@@ -104,7 +104,7 @@ namespace Registrar.Controllers
     public ActionResult DeleteCategory(int joinId)
     {
       var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
-      _db.CategoryItem.Remove(joinEntry);
+      _db.CourseStudent.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

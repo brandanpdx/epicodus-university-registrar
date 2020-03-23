@@ -6,11 +6,11 @@ namespace Registrar.Models
     {
         public Course()
         {
-            this.Students = new HashSet<CourseItem>();
+            this.Students = new HashSet<CourseStudent>();
         }
 
         public int CourseId { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<CourseItem> Students { get; set; }
+        public virtual ICollection<CourseStudent> Students { get; set; }
     }
 }
