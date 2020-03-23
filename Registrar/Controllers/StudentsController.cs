@@ -23,7 +23,7 @@ namespace Registrar.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name", "AdmissionDate");
       return View();
     }
 
@@ -51,7 +51,7 @@ namespace Registrar.Controllers
     public ActionResult Edit(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
-      ViewBag.CategoryId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.CategoryId = new SelectList(_db.Courses, "CourseId", "Name", "AdmissionDate");
       return View(thisStudent);
     }
 
@@ -67,10 +67,10 @@ namespace Registrar.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddCategory(int id)
+    public ActionResult AddCourse(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name", "AdmissionDate");
       return View(thisStudent);
     }
 
