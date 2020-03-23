@@ -9,6 +9,7 @@ namespace Registrar.Models
     }
     public int StudentId { get; set; }
     public string Description { get; set; }
+    public string AdmissionDate { get; set; }
 
     public ICollection<CourseStudent> Courses { get; }
   }
