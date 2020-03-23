@@ -32,7 +32,7 @@ You can now run the program by typing:
 
 ## Support and Contact
 
-Please email Brandan Sayarath: brandan@brandan.tech for any questions.
+Please email Brandan Sayarath, Zakk Short, or Jeremy Padot for any questions.
 
 ## Technologies Used
 
@@ -49,5 +49,5 @@ This program was created with:
 
 This code is licensed under MIT permissive free software license
 
-Copyright (c) 2020 Brandan Sayarath
+Copyright (c) 2020 Brandan Sayarath, Zakkrey Short, Jeremy K. Padot
 
